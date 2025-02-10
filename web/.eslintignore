@@ -1,0 +1,4 @@
+iconfont.js
+packages/dss/server/*
+packages/*/node_modules/*/*
+"*.min.js"
