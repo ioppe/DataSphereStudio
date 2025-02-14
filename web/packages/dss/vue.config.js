@@ -233,7 +233,7 @@ module.exports = {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '../'),
-        'vscode': require.resolve('monaco-languageclient/lib/vscode-compatibility')
+        //'vscode': require.resolve('monaco-languageclient/lib/vscode')
       }
     },
     plugins
