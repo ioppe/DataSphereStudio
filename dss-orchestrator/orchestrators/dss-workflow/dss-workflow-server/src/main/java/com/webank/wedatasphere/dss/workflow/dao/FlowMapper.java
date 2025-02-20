@@ -40,6 +40,8 @@ public interface FlowMapper {
 
     List<Long> selectSavedSubFlowIDByParentFlowID(Long parentFlowID);
 
+    String selectFlowNameByID(Long flowID);
+
     void deleteFlowBaseInfo(Long flowID);
 
     void deleteFlowRelation(Long flowID);

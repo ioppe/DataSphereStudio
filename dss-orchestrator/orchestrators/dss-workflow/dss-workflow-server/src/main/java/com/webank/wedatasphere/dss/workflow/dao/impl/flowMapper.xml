@@ -52,6 +52,13 @@
         WHERE id =#{id}
     </update>
 
+    <select id="selectFlowByProjectID" resultType="com.webank.wedatasphere.dss.workflow.common.entity.DSSFlow">
+        SELECT * FROM `dss_workflow`
+        WHERE project_id = #{projectID}
+        ORDER BY create_time DESC
+        LIMIT 1
+    </select>
+
     <select id="selectSubFlowIDByParentFlowID" resultType="java.lang.Long">
         SELECT fr.flow_id FROM `dss_workflow_relation` fr WHERE fr.parent_flow_id = #{parentFlowID}
     </select>

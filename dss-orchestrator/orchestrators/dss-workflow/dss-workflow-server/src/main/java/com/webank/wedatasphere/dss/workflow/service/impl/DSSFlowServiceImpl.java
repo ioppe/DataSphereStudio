@@ -35,6 +35,7 @@ import com.webank.wedatasphere.dss.common.utils.IoUtils;
 import com.webank.wedatasphere.dss.common.utils.MapUtils;
 import com.webank.wedatasphere.dss.contextservice.service.ContextService;
 import com.webank.wedatasphere.dss.contextservice.service.impl.ContextServiceImpl;
+import com.webank.wedatasphere.dss.framework.project.dao.DSSProjectMapper;
 import com.webank.wedatasphere.dss.standard.app.development.utils.DSSJobContentConstant;
 import com.webank.wedatasphere.dss.standard.app.sso.Workspace;
 import com.webank.wedatasphere.dss.workflow.common.entity.DSSFlow;
@@ -87,6 +88,9 @@ public class DSSFlowServiceImpl implements DSSFlowService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private FlowMapper flowMapper;
+
+    @Autowired
+    private DSSProjectMapper dssProjectMapper;
     @Autowired
     private NodeInfoMapper nodeInfoMapper;
     @Autowired
@@ -377,7 +381,9 @@ public class DSSFlowServiceImpl implements DSSFlowService {
     @Override
     public List<ExtraToolBarsVO> getExtraToolBars(long workspaceId, long projectId) {
         List<ExtraToolBarsVO> retList = new ArrayList<>();
-        retList.add(new ExtraToolBarsVO("前往调度中心", DSSWorkFlowConstant.GOTO_SCHEDULER_CENTER_URL.getValue() + "?workspaceId=" + workspaceId, "icon:null"));
+        String projectName = dssProjectMapper.getProjectNameById(projectId);
+        String flowName = flowMapper.selectFlowNameByID(projectId);
+        retList.add(new ExtraToolBarsVO("前往调度中心", DSSWorkFlowConstant.GOTO_SCHEDULER_CENTER_URL.getValue() + "manager?project=" + projectName + "&flow=" + flowName, "icon:null"));
         return retList;
     }
 
