@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webank.wedatasphere.dss.mapper.DmpMetaMapper">
+    <resultMap id="BaseResultMap" type="com.webank.wedatasphere.dss.domain.entity.DmpMeta">
+        <id column="sysid" jdbcType="CHAR" property="sysid" />
+        <result column="statusid" jdbcType="VARCHAR" property="statusid" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="deptid" jdbcType="VARCHAR" property="deptid" />
+        <result column="deptname" jdbcType="VARCHAR" property="deptname" />
+        <result column="datalevelid" jdbcType="VARCHAR" property="datalevelid" />
+        <result column="datalevelno" jdbcType="VARCHAR" property="datalevelno" />
+        <result column="datalevelname" jdbcType="VARCHAR" property="datalevelname" />
+        <result column="creatorid" jdbcType="VARCHAR" property="creatorid" />
+        <result column="creatorname" jdbcType="VARCHAR" property="creatorname" />
+        <result column="createon" jdbcType="TIMESTAMP" property="createon" />
+        <result column="modifierid" jdbcType="VARCHAR" property="modifierid" />
+        <result column="modifiername" jdbcType="VARCHAR" property="modifiername" />
+        <result column="modifiedon" jdbcType="TIMESTAMP" property="modifiedon" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="orderno" jdbcType="VARCHAR" property="orderno" />
+        <result column="parentid" jdbcType="VARCHAR" property="parentid" />
+        <result column="isleaf" jdbcType="VARCHAR" property="isleaf" />
+        <result column="namepath" jdbcType="VARCHAR" property="namepath" />
+        <result column="metano" jdbcType="VARCHAR" property="metano" />
+        <result column="metaname" jdbcType="VARCHAR" property="metaname" />
+        <result column="iconno" jdbcType="VARCHAR" property="iconno" />
+        <result column="classid" jdbcType="VARCHAR" property="classid" />
+        <result column="classname" jdbcType="VARCHAR" property="classname" />
+        <result column="tabname" jdbcType="VARCHAR" property="tabname" />
+        <result column="iscreateid" jdbcType="VARCHAR" property="iscreateid" />
+        <result column="iscreate" jdbcType="VARCHAR" property="iscreate" />
+        <result column="dastid" jdbcType="VARCHAR" property="dastid" />
+        <result column="dbid" jdbcType="VARCHAR" property="dbid" />
+        <result column="dbname" jdbcType="VARCHAR" property="dbname" />
+        <result column="datamemo" jdbcType="VARCHAR" property="datamemo" />
+        <result column="hasrule" jdbcType="INTEGER" property="hasrule" />
+        <result column="viewsql" jdbcType="VARCHAR" property="viewsql" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        sysid, statusid, status, deptid, deptname, datalevelid, datalevelno, datalevelname,
+    creatorid, creatorname, createon, modifierid, modifiername, modifiedon, remark, orderno,
+    parentid, isleaf, namepath, metano, metaname, iconno, classid, classname, tabname,
+    iscreateid, iscreate, dastid, dbid, dbname, datamemo, hasrule, viewsql
+    </sql>
+    <sql id="Base_Where_List">
+        <where>
+            <if test="statusid != null and statusid !='' ">and statusid = #{statusid}</if>
+            <if test="parentid != null and parentid !='' ">and parentid = #{parentid}</if>
+            <if test="classid != null and classid !='' ">and classid = #{classid}</if>
+            <if test="metaname != null and metaname !='' ">and metaname = #{metaname}</if>
+            <if test="tabname != null and tabname !='' ">and tabname = #{tabname}</if>
+            <if test="dbid != null and dbid !='' ">and dbid = #{dbid}</if>
+            <if test="iscreateid != null and iscreateid !='' ">and (iscreateid = #{iscreateid} or classid = 'menu')</if>
+            <if test="namepathlike != null and namepathlike != '' ">and namepath like concat(#{namepathlike},'%')</if>
+            <if test="rootid != null and rootid != ''">
+                and exists(
+                select 1
+                from dmp_meta a1
+                where a1.sysid = #{rootid}
+                and dmp_meta.namepath like concat(a1.namepath,'%')
+                )
+            </if>
+            <if test="tometaid != null and tometaid != ''">
+                and sysid in (
+                select a1.metaid
+                from dmp_trans_to a1
+                join dmp_trans_to a2
+                on a1.transid = a2.transid
+                and a2.classid = 'to'
+                and a1.classid = 'from'
+                and a2.metaid=#{tometaid}
+                )
+            </if>
+        </where>
+    </sql>
+    <select id="selectForList" parameterType="com.webank.wedatasphere.dss.domain.dto.MetaLoadParams"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dmp_meta
+        <include refid="Base_Where_List"/>
+        order by orderno
+    </select>
+
+</mapper>
