@@ -1,0 +1,7 @@
+package com.webank.wedatasphere.dss;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}

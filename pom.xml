@@ -36,6 +36,7 @@
         <module>plugins/azkaban/linkis-jobtype</module>
         <module>assembly</module>
         <module>plugins/dolphinscheduler</module>
+        <module>platform-integration</module>
     </modules>
 
     <properties>
