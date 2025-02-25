@@ -29,9 +29,9 @@ server:
 spring:
   datasource:
     mysql:
-      jdbc-url: jdbc:mysql://dev.framework.server.old:23306/dmp?allowPublicKeyRetrieval=true
-      username: hluser
-      password: hlpassword
+      jdbc-url: jdbc:mysql://61.183.254.91:43306/dss?allowPublicKeyRetrieval=true
+      username: dss
+      password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 #logging:
