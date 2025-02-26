@@ -13,7 +13,7 @@ import java.util.List;
 public class MetaController {
     @Autowired
     IMetaService m_MetaService;
-    @GetMapping("/selectMetaList.do")
+    @GetMapping("/selectMetaList")
     @ResponseBody
     public List<DmpMeta> selectMetaList(@ModelAttribute MetaLoadParams params) {
         return m_MetaService.selectMetaList(params);

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webank.wedatasphere.dss.mapper.DmpMetaColMapper">
+    <resultMap id="BaseResultMap" type="com.webank.wedatasphere.dss.domain.entity.DmpMetaCol">
+        <id column="sysid" jdbcType="CHAR" property="sysid" />
+        <result column="statusid" jdbcType="VARCHAR" property="statusid" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="deptid" jdbcType="VARCHAR" property="deptid" />
+        <result column="deptname" jdbcType="VARCHAR" property="deptname" />
+        <result column="datalevelid" jdbcType="VARCHAR" property="datalevelid" />
+        <result column="datalevelno" jdbcType="VARCHAR" property="datalevelno" />
+        <result column="datalevelname" jdbcType="VARCHAR" property="datalevelname" />
+        <result column="creatorid" jdbcType="VARCHAR" property="creatorid" />
+        <result column="creatorname" jdbcType="VARCHAR" property="creatorname" />
+        <result column="createon" jdbcType="TIMESTAMP" property="createon" />
+        <result column="modifierid" jdbcType="VARCHAR" property="modifierid" />
+        <result column="modifiername" jdbcType="VARCHAR" property="modifiername" />
+        <result column="modifiedon" jdbcType="TIMESTAMP" property="modifiedon" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="orderno" jdbcType="VARCHAR" property="orderno" />
+        <result column="metaid" jdbcType="VARCHAR" property="metaid" />
+        <result column="metaname" jdbcType="VARCHAR" property="metaname" />
+        <result column="tabname" jdbcType="VARCHAR" property="tabname" />
+        <result column="colname" jdbcType="VARCHAR" property="colname" />
+        <result column="coltitle" jdbcType="VARCHAR" property="coltitle" />
+        <result column="coldes" jdbcType="VARCHAR" property="coldes" />
+        <result column="canemptyid" jdbcType="VARCHAR" property="canemptyid" />
+        <result column="canempty" jdbcType="VARCHAR" property="canempty" />
+        <result column="coltypeid" jdbcType="VARCHAR" property="coltypeid" />
+        <result column="coltype" jdbcType="VARCHAR" property="coltype" />
+        <result column="coldbtype" jdbcType="VARCHAR" property="coldbtype" />
+        <result column="collen" jdbcType="INTEGER" property="collen" />
+        <result column="colacc" jdbcType="INTEGER" property="colacc" />
+        <result column="ruleid" jdbcType="VARCHAR" property="ruleid" />
+        <result column="rulename" jdbcType="VARCHAR" property="rulename" />
+        <result column="isfilterid" jdbcType="VARCHAR" property="isfilterid" />
+        <result column="isfilter" jdbcType="VARCHAR" property="isfilter" />
+        <result column="width" jdbcType="INTEGER" property="width" />
+        <result column="ispkid" jdbcType="VARCHAR" property="ispkid" />
+        <result column="ispk" jdbcType="VARCHAR" property="ispk" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        sysid, statusid, status, deptid, deptname, datalevelid, datalevelno, datalevelname,
+    creatorid, creatorname, createon, modifierid, modifiername, modifiedon, remark, orderno,
+    metaid, metaname, tabname, colname, coltitle, coldes, canemptyid, canempty, coltypeid,
+    coltype, coldbtype, collen, colacc, ruleid, rulename, isfilterid, isfilter, width,
+    ispkid, ispk
+    </sql>
+    <sql id="Base_Where_List">
+        <where>
+            <if test="metaid != null and metaid !='' ">and metaid = #{metaid}</if>
+            <if test="keyWord != null and keyWord !='' ">and (colname like concat('%',#{keyWord},'%')
+                or coltitle like concat('%',#{keyWord},'%'))
+            </if>
+        </where>
+    </sql>
+    <select id="selectForList" parameterType="com.webank.wedatasphere.dss.domain.dto.MetaColLoadParams"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dmp_meta_col
+        <include refid="Base_Where_List"/>
+        order by orderno
+    </select>
+
+
+</mapper>
