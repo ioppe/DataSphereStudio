@@ -52,6 +52,9 @@ public interface DSSProjectService  extends IService<DSSProjectDO> {
     DSSProjectDO getProjectByName(String name);
 
 
+    //通过name和workspaceId查询projectName
+    DSSProjectDO getProjectByNameAndWorkspaceId(String name, Long workspaceId);
+
     DSSProjectDO getProjectById(Long id);
 
 

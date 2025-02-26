@@ -119,7 +119,8 @@ public class DSSFrameworkProjectServiceImpl implements DSSFrameworkProjectServic
     @Override
     public void checkProjectName(String name, Workspace workspace, String username) throws DSSProjectErrorException {
         //判断工程是否存在相同的名称
-        DSSProjectDO dbProject = dssProjectService.getProjectByName(name);
+        Long workspaceId = workspace.getWorkspaceId();
+        DSSProjectDO dbProject = dssProjectService.getProjectByNameAndWorkspaceId(name,workspaceId);
         if (dbProject != null) {
             DSSExceptionUtils.dealErrorException(60022, String.format("project name %s has already been exists.", name), DSSProjectErrorException.class);
         }

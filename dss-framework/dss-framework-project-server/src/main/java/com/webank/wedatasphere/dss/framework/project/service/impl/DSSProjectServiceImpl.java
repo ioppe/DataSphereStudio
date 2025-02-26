@@ -142,6 +142,16 @@ public class DSSProjectServiceImpl extends ServiceImpl<DSSProjectMapper, DSSProj
         return CollectionUtils.isEmpty(projectList) ? null : projectList.get(0);
     }
 
+    //通过name和workspaceId查询projectName
+    @Override
+    public DSSProjectDO getProjectByNameAndWorkspaceId(String name, Long workspaceId) {
+        QueryWrapper<DSSProjectDO> projectQueryWrapper = new QueryWrapper<>();
+        projectQueryWrapper.eq("name", name);
+        projectQueryWrapper.eq("workspace_id", workspaceId);
+        List<DSSProjectDO> projectList = projectMapper.selectList(projectQueryWrapper);
+        return CollectionUtils.isEmpty(projectList) ? null : projectList.get(0);
+    }
+
     @Override
     public DSSProjectDO getProjectById(Long id) {
         return projectMapper.selectById(id);

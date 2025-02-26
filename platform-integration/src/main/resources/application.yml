@@ -26,19 +26,20 @@ server:
 #  mapperLocations: classpath*:mapper/**/*Mapper.xml
 #  # 加载全局的配置文件
 #  configLocation: classpath:mybatis/mybatis-config.xml
+
+# 数据源配置
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://61.183.254.91:49600/eureka/
+spring:
+  application:
+    name: Dmp
   datasource:
     mysql:
       jdbc-url: jdbc:mysql://61.183.254.91:43306/dss?allowPublicKeyRetrieval=true
       username: dss
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
-#logging:
-#  level:
-#    org.springframework.boot: DEBUG
-
-#linkis
-wds:
-  linkis:
-    server:
-      restful:
-        scan-package: com.webank.wedatasphere.dss.controller
