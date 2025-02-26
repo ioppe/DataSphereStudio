@@ -6,12 +6,12 @@
     <groupId>com.webank.wedatasphere.dss</groupId>
     <version>1.1.2</version>
 
-    <parent>
-        <groupId>com.webank.wedatasphere.dss</groupId>
-        <artifactId>dss</artifactId>
-        <version>1.1.2</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>com.webank.wedatasphere.dss</groupId>-->
+<!--        <artifactId>dss</artifactId>-->
+<!--        <version>1.1.2</version>-->
+<!--        <relativePath>../pom.xml</relativePath>-->
+<!--    </parent>-->
     <artifactId>platform-integration</artifactId>
 
     <properties>
@@ -29,16 +29,46 @@
             <version>${project.version}</version>
             <exclusions>
                 <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                </exclusion>
+                <exclusion>
                     <groupId>org.ow2.asm</groupId>
                     <artifactId>asm</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-netflix</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>*</artifactId>
+                    <groupId>org.springframework.cloud</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>*</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>*</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>*</artifactId>
+                    <groupId>org.springframework.security</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-annotations</artifactId>
+                </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.linkis</groupId>
-            <artifactId>linkis-mybatis</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
