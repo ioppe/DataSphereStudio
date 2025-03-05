@@ -153,7 +153,7 @@ export default {
         orchestratorName: [
           { required: true, message: this.$t('message.workflow.enterName'), trigger: 'blur' },
           { message: `${this.$t('message.workflow.nameLength')}128`, max: 128 },
-          { type: 'string', pattern: /^[a-zA-Z][a-zA-Z0-9_]*$/, message: this.$t('message.workflow.validNameDesc'), trigger: 'blur' },
+          { type: 'string', message: this.$t('message.workflow.validNameDesc'), trigger: 'blur' },
         ],
         description: [
           { required: true, message: this.$t('message.workflow.enterDesc'), trigger: 'blur' },
